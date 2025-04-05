@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Dental Clinic</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('download (6).jfif');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      padding: 2.5rem;
+    }
+
+    .clinic-wrapper {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 80rem;
+      margin: auto;
+    }
+
+    .clinic-logo {
+      width: 80px;
+      height: 80px;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="clinic-wrapper">
+    
+    <!-- Header with Icon -->
+    <div class="flex items-center justify-center mb-6">
+      <img src="dentist_17714361.png" alt="Dentist Icon" class="clinic-logo" />
+      <h1 class="text-4xl font-bold text-blue-900">Modern Dental Clinic</h1>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Booking Form -->
+      <div class="rounded-2xl shadow-md bg-white">
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-blue-800 mb-2">Book Appointment</h2>
+          <form class="space-y-4">
+            <input type="text" placeholder="Full Name" class="w-full p-3 rounded-lg border border-gray-300" />
+            <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border border-gray-300" />
+            <input type="date" class="w-full p-3 rounded-lg border border-gray-300" />
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg">Book Now</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Clinic Services -->
+      <div class="rounded-2xl shadow-md bg-white">
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-blue-800 mb-4">Clinic Services</h2>
+          <ul class="list-disc list-inside space-y-2 text-gray-700">
+            <li>Teeth Cleaning</li>
+            <li>Whitening Treatments</li>
+            <li>Braces & Aligners</li>
+            <li>Root Canal Therapy</li>
+            <li>Implants & Crowns</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

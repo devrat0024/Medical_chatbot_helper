@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dental Chatbot</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-image: url('download (6).jfif');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-2xl bg-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl p-6">
+    <div class="flex items-center mb-4">
+      <img src="dentist_17714361.png" alt="Dentist Icon" class="w-14 h-14 mr-3">
+      <h2 class="text-2xl font-bold text-blue-800">Dental Assistant Chatbot</h2>
+    </div>
+    <div id="chatWindow" class="h-96 overflow-y-auto border border-gray-300 rounded-lg p-4 space-y-3 bg-gray-50">
+      <div class="flex justify-start">
+        <div class="bg-blue-100 text-blue-800 p-3 rounded-xl max-w-xs">Hello! How can I assist you today with your dental concerns?</div>
+      </div>
+    </div>
+    <form id="chatForm" class="mt-4 flex">
+      <input 
+        type="text" 
+        id="userInput" 
+        placeholder="Ask your dental question..." 
+        class="flex-grow p-3 rounded-l-xl border border-gray-300 focus:outline-none"
+        required
+      />
+      <button 
+        type="submit" 
+        class="bg-blue-600 text-white px-5 rounded-r-xl hover:bg-blue-700"
+      >
+        Send
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const chatForm = document.getElementById('chatForm');
+    const chatWindow = document.getElementById('chatWindow');
+    const userInput = document.getElementById('userInput');
+
+    chatForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      const userMsg = document.createElement('div');
+      userMsg.className = 'flex justify-end';
+      userMsg.innerHTML = `<div class="bg-green-100 text-green-800 p-3 rounded-xl max-w-xs">${message}</div>`;
+      chatWindow.appendChild(userMsg);
+
+      userInput.value = '';
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+
+      try {
+        const res = await fetch('http://localhost:5000/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message, sessionId: "session_1" })
+        });
+
+        const data = await res.json();
+        const botMsg = document.createElement('div');
+        botMsg.className = 'flex justify-start';
+        botMsg.innerHTML = `<div class="bg-blue-100 text-blue-800 p-3 rounded-xl max-w-xs mt-2">${data.reply}</div>`;
+        chatWindow.appendChild(botMsg);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+      } catch (err) {
+        alert('Error contacting chatbot server.');
+      }
+    });
+  </script>
+</body>
+</html>
